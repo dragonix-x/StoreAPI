@@ -1,5 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const NotFound = require('../errors/NotFound');
+const Role = require('../models/Role');
 
 const createRole = async(req, res) => {
 	const role = await Role.create({...req.body});
