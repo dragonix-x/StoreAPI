@@ -5,6 +5,8 @@ const { connect } = require('mongoose');
 const path = require('node:path');
 
 const { errorHandler, notFoundHandler } = require('./middlewares/index') ;
+const roleRouter = require('./routes/role');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -15,6 +17,8 @@ app.use(express.json());
 app.use('/api/v1/info', (req, res) => {
     res.send(path.resolve('./README.md'));
 })
+
+app.use('/api/v1/roles', roleRouter);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
