@@ -4,6 +4,7 @@ const express = require('express');
 const { connect } = require('mongoose');
 const path = require('node:path');
 
+const { errorHandler, notFoundHandler } = require('./middlewares/index') ;
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -15,6 +16,8 @@ app.use('/api/v1/info', (req, res) => {
     res.send(path.resolve('./README.md'));
 })
 
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 const start = async() => {
     try {
